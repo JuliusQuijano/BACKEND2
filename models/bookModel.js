@@ -1,3 +1,4 @@
+import e from 'express';
 import pool from '../config/db.js';
 
 //read
@@ -23,3 +24,12 @@ export const update = async (book) => {
         );
         return result.affectedRows;
     }       
+
+//delete new
+export const deleteBook = async (id) => {
+    const [result] = await pool.query(
+        "DELETE FROM book WHERE id = ?",
+        [id]
+    );
+    return result.affectedRows;
+}   

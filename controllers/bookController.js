@@ -1,4 +1,3 @@
-import e from 'express';
 import * as bookService from '../services/bookService.js';
 
 export const fetchallBooks = async (req, res) =>{
@@ -41,4 +40,27 @@ export const editBook = async (req, res) => {
             error: "Internal Server Error"
         });
     }
+};
+
+//DELETE BOOK new
+export const deleteBook = async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        const deletedbook = await bookService.deleteBook(id);
+        res.status(200).json({     
+            success: true,
+            message: deletedbook
+        });
+    }
+    catch(e) {
+        console.log(e);
+        res.status(500).json({
+
+            error: "Internal Server Error"
+        });
+    }              
+
+
+
 };
