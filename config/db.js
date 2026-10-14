@@ -5,7 +5,5 @@ const pool = mysql.createPool({
     user: "root",
     password: "",
     database: "librarydb"
-}
-
-)
-export default pool;
+})
+export default pool;     
