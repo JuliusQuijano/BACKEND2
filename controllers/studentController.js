@@ -1,9 +1,8 @@
-import e from 'express';
-import * as studentService from '../services/studentService.js';
+ import * as studentService from '../services/studentService.js';
 
-export const fetchallStudents = async (req, res) =>{
-    const students = await studentService.fetchAllStudents();
-    res.status(200).json(students);
+export const fetchAllStudents = async (req, res) => {
+  const students = await studentService.fetchAllStudents();
+  res.status(200).json(students);
 }
 
 export const createStudent = async (req, res) => {
@@ -16,15 +15,15 @@ export const createStudent = async (req, res) => {
             success: true,
             message: studentId
         });
-    } catch(e) {
+    }catch(e){
         console.log(e);
         res.status(500).json({
-            error: "Internal Server Error"
+           error: "Internet Server Error"
         });
     }
-};
+        
+}
 
-//UPDATE STUDENT new
 export const editStudent = async (req, res) => {
     const {name, srcode, program} = req.body;
     const {id} = req.params;
@@ -32,38 +31,31 @@ export const editStudent = async (req, res) => {
 
     try {
         const updatedStudent = await studentService.updateStudent(student);
-        res.status(200).json({  
-
+        res.status(200).json({
             success: true,
             message: updatedStudent
         });
-    } catch(e) {
+    } catch (e) {
         console.log(e);
-        res.status(500).json({  
-
-
-            error: "Internal Server Error"
+        res.status(500).json({
+            error: "Internet Server Error"
         });
-    }     
+    }
+}
 
-};
-
-//DELETE STUDENT new
 export const deleteStudent = async (req, res) => {
     const {id} = req.params;
 
     try {
-        const deletedStudent = await studentService.deleteStudent(id);
-        res.status(200).json({     
-            success: true,  
+        const deletedStudent = await studentService.deleteStudent(parseInt(id));
+        res.status(200).json({
+            success: true,
             message: deletedStudent
         });
-    }   
-    catch(e) {
+    } catch (e) {
         console.log(e);
-        res.status(500).json({  
-            error: "Internal Server Error"
+        res.status(500).json({
+            error: "Internet Server Error"
         });
-    }   
-
-};
+    }
+}
